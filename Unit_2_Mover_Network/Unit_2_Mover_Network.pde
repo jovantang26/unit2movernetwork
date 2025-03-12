@@ -5,7 +5,7 @@
 //Mover Network
 
 Mover[] movers; 
-int numOfMovers = 100; 
+int numOfMovers = 50; 
 
 void setup() {
   size(900, 900); 
@@ -24,7 +24,7 @@ void draw() {
   while (i < numOfMovers) {
     movers[i].act(); 
     movers[i].showBody(); 
-    movers[i].showConnections; 
+    movers[i].showConnections(); 
     i++;
   }
 }
