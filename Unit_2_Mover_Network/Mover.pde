@@ -39,13 +39,14 @@ class Mover {
 
   void showConnections() {
     int i = 0;
-    while (i < numOfMovers) {
-      float dist = dist(location.x, location.y, movers[i].location.x, movers[i].location.y);
+    while (i < movers.size()) {
+      Mover other = movers.get(i); 
+      float dist = dist(location.x, location.y, other.location.x, other.location.y);
       if (dist <= 250) {
         float a = map(dist, 0, 200, 255, 0); //a = transparency
         stroke(255, a);
         strokeWeight(2);
-        line(location.x, location.y, movers[i].location.x, movers[i].location.y);
+        line(location.x, location.y, other.location.x, other.location.y);
       }
       i++;
     }
