@@ -28,3 +28,7 @@ void draw() {
     i++;
   }
 }
+
+void mouseReleased() {
+  movers.add(new Mover(mouseX, mouseY)); 
+}

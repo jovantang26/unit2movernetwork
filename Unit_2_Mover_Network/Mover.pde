@@ -16,6 +16,19 @@ class Mover {
     g = random(0, 255);
     b = random(0, 255);
   }
+  
+  Mover(float x, float y) {
+    location = new PVector (x, y); 
+    velocity = new PVector (0, 1); 
+    velocity.setMag(random(1, 5)); 
+    velocity.rotate(radians(random(0, 360)));  
+
+    d = random(100, 150);
+
+    r = random(0, 255);
+    g = random(0, 255);
+    b = random(0, 255);
+  }
 
   void act() {
     move();
