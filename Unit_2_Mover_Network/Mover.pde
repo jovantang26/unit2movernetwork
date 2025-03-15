@@ -3,40 +3,52 @@ class Mover {
   PVector velocity; //velocity
   float d; //diameter
   float r, g, b; //color spectrum
+  boolean alive; //detectio
 
   Mover() {
-    location = new PVector (random(0, width), random(0, height)); 
-    velocity = new PVector (0, 1); 
-    velocity.setMag(random(1, 5)); 
-    velocity.rotate(radians(random(0, 360)));  
+    location = new PVector (random(0, width), random(0, height));
+    velocity = new PVector (0, 1);
+    velocity.setMag(random(1, 5));
+    velocity.rotate(radians(random(0, 360)));
 
     d = random(100, 150);
 
     r = random(0, 255);
     g = random(0, 255);
     b = random(0, 255);
+
+    alive = true;
   }
-  
+
   Mover(float x, float y) {
-    location = new PVector (x, y); 
-    velocity = new PVector (0, 1); 
-    velocity.setMag(random(1, 5)); 
-    velocity.rotate(radians(random(0, 360)));  
+    location = new PVector (x, y);
+    velocity = new PVector (0, 1);
+    velocity.setMag(random(1, 5));
+    velocity.rotate(radians(random(0, 360)));
 
     d = random(100, 150);
 
     r = random(0, 255);
     g = random(0, 255);
     b = random(0, 255);
+
+    alive = true;
   }
 
   void act() {
     move();
     bounceOfEdge();
+    checkForDeletion();
+  }
+
+  void checkForDeletion() {
+    if (dist(location.x, location.y, mouseX, mouseY) < d/2 && mousePressed) {
+      alive = false;
+    }
   }
 
   void move() {
-    location.add(velocity); 
+    location.add(velocity);
   }
 
   void bounceOfEdge() {
@@ -53,7 +65,7 @@ class Mover {
   void showConnections() {
     int i = 0;
     while (i < movers.size()) {
-      Mover other = movers.get(i); 
+      Mover other = movers.get(i);
       float dist = dist(location.x, location.y, other.location.x, other.location.y);
       if (dist <= 250) {
         float a = map(dist, 0, 200, 255, 0); //a = transparency
